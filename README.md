@@ -1,4 +1,5 @@
 # auth0-vue-sdk-demo
+This repository contains the code used for demostration purposes in this article.
 
 ## Project setup
 ```
