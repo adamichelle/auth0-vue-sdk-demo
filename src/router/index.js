@@ -3,6 +3,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import store from '../store'
 
+const extendedAuth0Guard = async (to) => {
+  const response = await authGuard(to)
+  store.commit('updateAuthenticationStatus', { isAuthenticated: response })
+}
+
 const routes = [
   {
     path: '/',
@@ -21,7 +26,7 @@ const routes = [
     path: '/protected-page',
     name: 'protected-page',
     component: () => import(/* webpackChunkName: "protected-page" */ '../views/ProtectedView.vue'),
-    beforeEnter: authGuard
+    beforeEnter: extendedAuth0Guard
   }
 ]
 
